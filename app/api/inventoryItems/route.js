@@ -29,3 +29,17 @@ export async function GET() {
   const inventoryItems = await InventoryItem.find();
   return NextResponse.json({ inventoryItems });
 }
+
+
+// Use search params to delete specific employee
+// Search params are passed in the url
+// Example: http://localhost:3000/api/employees?id=1
+// Delete request is made in the DeleteBtn component
+export async function DELETE(request) {
+  console.log('delete route hit')
+  const id = request.nextUrl.searchParams.get("id");
+  console.log('id in delete route: ', id)
+  await connectMongoDB();
+  await InventoryItem.findByIdAndDelete(id);
+  return NextResponse.json({ message: "Inventory Item Deleted" }, {status: 200});
+}

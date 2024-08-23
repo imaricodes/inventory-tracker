@@ -11,9 +11,12 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
+import { Pencil, Trash2 } from "lucide-react";
+import DeleteItemBtn from "@/components/DeleteItemBtn";
 const ItemsList = () => {
   const [inventoryItems, setInventoryItems] = useState([]);
+  const [update, setUpdate] = useState(false);
+
   const getInventoryItems = async () => {
     try {
       const res = await fetch(
@@ -39,6 +42,11 @@ const ItemsList = () => {
     }
   };
 
+  const handleRefresh = () => {
+    setUpdate(!update);
+    getInventoryItems();
+  };
+
   useEffect(() => {
     getInventoryItems();
   }, []);
@@ -54,15 +62,19 @@ const ItemsList = () => {
             </CardDescription>
           </CardHeader>
           <CardFooter>
-            <Button asChild>
-              <Link href={"/editItem/" + item._id}>Edit</Link>
-            </Button>
-            <Button asChild>
-              <Link href={"/updateItem/" + item._id}>Update</Link>
-            </Button>
-            <Button asChild>
-              <Link href={"/deleteItem/" + item._id}>Delete</Link>
-            </Button>
+            <div className="flex justify-between gap-4 w-full">
+              <Button asChild>
+                <Link href={"/updateItem/" + item._id}>Update</Link>
+              </Button>
+
+              <div className="flex gap-4 items-center">
+                <Link href={"/editItem/" + item._id}>
+                  <Pencil />
+                </Link>
+
+                <DeleteItemBtn id={item._id} onRemove={handleRefresh} />
+              </div>
+            </div>
           </CardFooter>
         </Card>
       ))}
