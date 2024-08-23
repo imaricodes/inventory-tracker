@@ -1,8 +1,13 @@
 import React from 'react'
+import DarkToggle from '@/components/DarkToggle'
+
 
 const NavBar = () => {
   return (
-    <div className='w-full bg-yellow-300'>NavBar</div>
+    <div className='w-full flex justify-between'>NavBar
+    <DarkToggle />
+
+    </div>
   )
 }
 
