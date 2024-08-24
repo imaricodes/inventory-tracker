@@ -3,7 +3,8 @@ import mongoose, { Schema } from "mongoose";
 const inventorySchema = new Schema(
     {
         itemName: {type: String, required: true},
-        itemSerialNumber: {type: String, required: false}
+        itemSerialNumber: {type: String, required: false},
+        note: { type: String, required: false }
     },
     {timestamps: true}
 )

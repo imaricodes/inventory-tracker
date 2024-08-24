@@ -60,6 +60,9 @@ const ItemsList = () => {
             <CardDescription className="font-medium">
               Serial Number: {item.itemSerialNumber}
             </CardDescription>
+            <CardDescription className="font-medium">
+              Note: {item.note}
+            </CardDescription>
           </CardHeader>
           <CardFooter>
             <div className="flex justify-between gap-4 w-full">

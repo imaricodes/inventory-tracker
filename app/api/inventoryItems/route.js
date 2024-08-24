@@ -6,14 +6,14 @@ export async function POST(request) {
   console.log("post route hit");
   //destructure request body object
   // field names match property names of req object
-  const { itemName, itemSerialNumber } = await request.json();
+  const { itemName, itemSerialNumber, note } = await request.json();
 
   // connect to remote mongo db
   await connectMongoDB();
 
   //create the ite
   // if collection does not exist, one will be created
-  await InventoryItem.create({ itemName, itemSerialNumber });
+  await InventoryItem.create({ itemName, itemSerialNumber, note });
 
   // return response with 201 status to user
   return NextResponse.json(
