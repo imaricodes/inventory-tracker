@@ -21,7 +21,7 @@ const DarkToggle = () => {
     <button
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
     >
-      {theme === 'dark' ? <Sun /> : <Moon />}
+      {theme === 'dark' ? <Sun size={40} /> : <Moon size={40} />}
     </button>
   );
 };
