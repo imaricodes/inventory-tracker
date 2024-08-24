@@ -1,5 +1,5 @@
 import React from "react";
-import UpdateInventoryForm from "@/app/(pages)/updateInventoryItem/[id]/UpdateInventoryForm";
+import UpdateInventoryForm from "@/app/(pages)/update-inventory-item/[id]/UpdateInventoryForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const page = ({ params }) => {

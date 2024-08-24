@@ -71,7 +71,7 @@ const ItemsList = () => {
               </Button>
 
               <div className="flex gap-4 items-center">
-                <Link href={`/updateInventoryItem/${item._id}`}>
+                <Link href={`/update-inventory-item/${item._id}`}>
                   <Pencil />
                 </Link>
 
