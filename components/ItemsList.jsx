@@ -43,7 +43,7 @@ const ItemsList = () => {
   };
 
   const handleRefresh = () => {
-    setUpdate(!update);
+    // setUpdate(!update);
     getInventoryItems();
   };
 
@@ -68,7 +68,7 @@ const ItemsList = () => {
               </Button>
 
               <div className="flex gap-4 items-center">
-                <Link href={"/editItem/" + item._id}>
+                <Link href={`/updateInventoryItem/${item._id}`}>
                   <Pencil />
                 </Link>
 
