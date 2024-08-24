@@ -20,7 +20,7 @@ const ItemsList = () => {
   const getInventoryItems = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/inventoryItems`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/inventory-items`,
         { cache: "no-store" }
       );
 
