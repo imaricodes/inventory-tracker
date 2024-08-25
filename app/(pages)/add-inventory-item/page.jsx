@@ -2,6 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 const page = () => {
   const [itemName, setItemName] = useState("");
   const [itemSerialNumber, setItemSerialNumber] = useState("");
@@ -22,7 +34,7 @@ const page = () => {
   };
 
   const handleNameChange = (e) => {
-    setItemName(e.target.value);
+    setItemName(e.target.value.replace(/^\s+/, ""));
     const value = e.target.value.trim();
 
     // Check if the form is valid
@@ -43,7 +55,6 @@ const page = () => {
       alert("Item name is required.");
       return;
     }
-
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/inventory-items`,
@@ -68,45 +79,54 @@ const page = () => {
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
-      <div className="container__form">
-        <form onSubmit={handleSubmit} className="form">
-          <input
-            onChange={handleNameChange}
-            value={itemName}
-            className="form__input"
-            type="text"
-            placeholder="Name"
-            required={true}
-          />
+      <Card>
+      <CardHeader>
+        <CardTitle>Add Inventory Item</CardTitle>
+        <CardDescription>Add a new item to the inventory.</CardDescription>
+      </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="form">
+            <Input
+              onChange={handleNameChange}
+              value={itemName}
+              // className="form__input"
+              type="text"
+              placeholder="Name"
+              required={true}
+            />
 
-          <input
-            onChange={(e) => setItemSerialNumber(e.target.value.trim())}
-            value={itemSerialNumber}
-            className="form__input"
-            type="text"
-            placeholder="Serial Number"
-          />
+            <Input
+              onChange={(e) => setItemSerialNumber(e.target.value.trim())}
+              value={itemSerialNumber}
 
-          <textarea
-            onChange={(e) => setNote(e.target.value)}
-            value={note}
-            className="form__input"
-            placeholder="Note"
-          />
+              type="text"
+              placeholder="Serial Number"
+            />
 
-          <button
-            type="submit"
-            className={`${
-              isFormValid && !error
-                ? "cursor-pointer button button--primary"
-                : "button button--disabled"
-            }`}
-            disabled={!isFormValid}
-          >
-            Add Item
-          </button>
-        </form>
-      </div>
+            <Textarea
+              onChange={(e) => setNote(e.target.value)}
+              value={note}
+              className="focus-visible:ring-0 focus-visible:ring-offset-0"
+              placeholder="Note"
+              maxlength="150"
+            />
+
+            <button
+              type="submit"
+              className={`${
+                isFormValid && !error
+                  ? "cursor-pointer button button--primary"
+                  : "button button--disabled cursor-not-allowed"
+              }`}
+              disabled={!isFormValid}
+            >
+              Add Item
+            </button>
+
+
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 };

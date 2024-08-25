@@ -70,7 +70,7 @@
 
 /* BUTTON */
 .button {
-  @apply font-bold text-white py-3 px-6 w-fit rounded-md mx-auto mt-4;
+  @apply font-bold text-white py-3 px-6 w-full rounded-md mx-auto mt-4;
 }
 
 .button--primary {
