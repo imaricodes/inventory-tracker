@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 import {
   Card,
@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-const AddInventoryItem = () => {
+export default function AddInventoryItem() {
   const [itemName, setItemName] = useState("");
   const [itemSerialNumber, setItemSerialNumber] = useState("");
   const [note, setNote] = useState("");
@@ -80,10 +80,10 @@ const AddInventoryItem = () => {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <Card>
-      <CardHeader>
-        <CardTitle>Add Inventory Item</CardTitle>
-        <CardDescription>Add a new item to the inventory.</CardDescription>
-      </CardHeader>
+        <CardHeader>
+          <CardTitle>Add Inventory Item</CardTitle>
+          <CardDescription>Add a new item to the inventory.</CardDescription>
+        </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="form">
             <Input
@@ -98,7 +98,6 @@ const AddInventoryItem = () => {
             <Input
               onChange={(e) => setItemSerialNumber(e.target.value.trim())}
               value={itemSerialNumber}
-
               type="text"
               placeholder="Serial Number"
             />
@@ -122,13 +121,9 @@ const AddInventoryItem = () => {
             >
               Add Item
             </button>
-
-
           </form>
         </CardContent>
       </Card>
     </div>
   );
-};
-
-export default AddInventoryItem;
+}
