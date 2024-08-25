@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil } from "lucide-react";
 import DeleteItemBtn from "@/components/DeleteItemBtn";
 const ItemsList = () => {
   const [inventoryItems, setInventoryItems] = useState([]);

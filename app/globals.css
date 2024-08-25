@@ -67,3 +67,30 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* BUTTON */
+.button {
+  @apply font-bold text-white py-3 px-6 w-fit rounded-md mx-auto mt-4;
+}
+
+.button--primary {
+  @apply bg-green-600;
+}
+
+.button--disabled {
+    @apply bg-gray-500
+}
+
+
+
+/* FORM */
+.form {
+  @apply flex flex-col gap-3;
+}
+
+.container__form {
+  @apply max-w-[500px] mx-auto border px-6 py-8 rounded-md bg-slate-100;
+}
+.form__input {
+  @apply border border-slate-300 px-8 py-2 rounded-md;
+}
