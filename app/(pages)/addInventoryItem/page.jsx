@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-const page = () => {
+const AddInventoryItem = () => {
   const [itemName, setItemName] = useState("");
   const [itemSerialNumber, setItemSerialNumber] = useState("");
   const [note, setNote] = useState("");
@@ -131,4 +131,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AddInventoryItem;
