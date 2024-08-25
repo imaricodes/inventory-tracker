@@ -9,7 +9,7 @@ export default function DeleteItemBtn({ id, onRemove }) {
 
     if (confirmed) {
       console.log('confirmed')
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/inventoryItems?id=${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/inventory-items?id=${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
