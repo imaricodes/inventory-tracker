@@ -18,3 +18,11 @@ export async function PUT(request, { params }) {
     { status: 200 }
   );
 }
+
+//This get route finds one employee by id
+export async function GET(request, { params }) {
+  const { id } = params;
+  await connectMongoDB();
+  const inventoryItem = await InventoryItem.findOne({ _id: id });
+  return NextResponse.json({ inventoryItem }, { status: 200 });
+}
