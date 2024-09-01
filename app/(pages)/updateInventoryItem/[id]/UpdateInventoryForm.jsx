@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import {useRouter} from "next/navigation"
 
 export default function UpdateInventoryForm({ inventoryItem }) {
-  // console.log('inventory item in form: ', inventoryItem)
-  const { itemName, itemSerialNumber, note } = inventoryItem;
+const router = useRouter()
+  const {_id: id, itemName, itemSerialNumber, note } = inventoryItem;
 
   const [newItemName, setNewItemName] = useState("");
   const [newItemSerialNumber, setNewItemSerialNumber] = useState("");
@@ -47,11 +48,7 @@ export default function UpdateInventoryForm({ inventoryItem }) {
     console.log("new item serial: ", newItemSerialNumber);
     console.log("new note: ", newNote);
 
-    if (newItemName === itemName) {
-      console.log("no change in item name");
-    }
-
-    //check which fields have changed
+    // assign altered fields to updatedFields object
     const updatedFields = {};
     if (newItemName.trim() !== "") {
       updatedFields.itemName = newItemName;
@@ -65,6 +62,28 @@ export default function UpdateInventoryForm({ inventoryItem }) {
       updatedFields.note = newNote;
     }
     console.log("updated fields: ", updatedFields);
+
+    // send updated fields to server
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/inventory-items/${id}`,
+        {
+          method: "PUT",
+          heaers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(updatedFields),
+        }
+      );
+
+      if (res.ok) {
+        router.push('/')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+
   };
 
   return (

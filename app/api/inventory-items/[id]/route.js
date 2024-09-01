@@ -9,10 +9,10 @@ export async function PUT(request, { params }) {
   const { id } = params;
 
   // destructure request body properties
-  const { itemName, itemSerialNumber } = await request.json();
+  const { itemName, itemSerialNumber, note } = await request.json();
 
   await connectMongoDB();
-  await InventoryItem.findByIdAndUpdate(id, { itemName, itemSerialNumber });
+  await InventoryItem.findByIdAndUpdate(id, { itemName, itemSerialNumber, note });
   return NextResponse.json(
     { message: "inventory item updated" },
     { status: 200 }
