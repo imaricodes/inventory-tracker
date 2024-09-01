@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
       <ThemeProvider attribute="class">
         <NavBar />
-        <main className="flex min-h-screen flex-col items-center justify-center container">
+        <main className="container">
         {children}
         </main>
         </ThemeProvider>

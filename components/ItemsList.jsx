@@ -66,9 +66,7 @@ const ItemsList = () => {
           </CardHeader>
           <CardFooter>
             <div className="flex justify-between gap-4 w-full">
-              <Button asChild>
-                <Link href={"/updateItem/" + item._id}>Update</Link>
-              </Button>
+
 
               <div className="flex gap-4 items-center">
                 <Link href={`/updateInventoryItem/${item._id}`}>
