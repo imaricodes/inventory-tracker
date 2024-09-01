@@ -60,7 +60,7 @@ const ItemsList = () => {
             <CardDescription className="font-medium">
               Serial Number: {item.itemSerialNumber}
             </CardDescription>
-            <CardDescription className="font-medium">
+            <CardDescription className="font-medium h-20 overflow-y-auto">
               Note: {item.note}
             </CardDescription>
           </CardHeader>
