@@ -78,11 +78,10 @@ export default function AddInventoryItem() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center">
-      <Card>
+      <Card className="max-w-[600px] mx-auto">
         <CardHeader>
           <CardTitle>Add Inventory Item</CardTitle>
-          <CardDescription>Add a new item to the inventory.</CardDescription>
+          <CardDescription>Add a new item to the inventory</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="form">
@@ -124,6 +123,6 @@ export default function AddInventoryItem() {
           </form>
         </CardContent>
       </Card>
-    </div>
+
   );
 }

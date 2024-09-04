@@ -92,18 +92,18 @@ export default function UpdateInventoryForm({ inventoryItem }) {
   };
 
   return (
-    <Card>
+    <Card className="max-w-[600px] mx-auto">
       <CardHeader>
         <CardTitle>Edit Inventory Item</CardTitle>
-        <CardDescription>Update inventory item.</CardDescription>
+        <CardDescription>Update inventory item</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="form">
           <Input
             type="text"
-            placeholder={"Enter new item name"}
+            placeholder={itemName}
             onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) => (e.target.placeholder = "Enter new item name")}
+            onBlur={(e) => (e.target.placeholder = itemName)}
             onChange={(e) => setNewItemName(e.target.value.trimStart())}
             defaultValue=""
           />
