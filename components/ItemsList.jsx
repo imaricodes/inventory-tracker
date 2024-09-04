@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -34,8 +33,6 @@ const ItemsList = () => {
         throw new Error("Invalid response formats");
       }
 
-      console.log(result.inventoryItems);
-
       setInventoryItems(result.inventoryItems);
     } catch (error) {
       console.log("Error loading inventoryItems: ", error);
@@ -43,7 +40,6 @@ const ItemsList = () => {
   };
 
   const handleRefresh = () => {
-    // setUpdate(!update);
     getInventoryItems();
   };
 
@@ -66,8 +62,6 @@ const ItemsList = () => {
           </CardHeader>
           <CardFooter>
             <div className="flex justify-between gap-4 w-full">
-
-
               <div className="flex gap-4 items-center">
                 <Link href={`/updateInventoryItem/${item._id}`}>
                   <Pencil />
