@@ -43,7 +43,7 @@ export default function UpdateInventoryForm({ inventoryItem }) {
   }, [newItemName, newItemSerialNumber, newNote]);
 
   const handleTextAreaChange = (e) => {
-    setNewItemSerialNumber(e.target.value.trimStart())
+    setNewNote(e.target.value.trimStart())
     const inputText = event.target.value;
     setTextArea(inputText);
     setRemainingChars(maxCharacters - inputText.length);
