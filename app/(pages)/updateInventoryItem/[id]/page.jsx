@@ -1,6 +1,5 @@
 import React from "react";
 import UpdateInventoryForm from "@/app/(pages)/updateInventoryItem/[id]/UpdateInventoryForm";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 
 const getInventoryItemById = async (id) => {
@@ -22,26 +21,14 @@ const getInventoryItemById = async (id) => {
     console.log(error);
   }
 };
-export default async function UpdateInventoryItem ({ params }) {
+export default async function UpdateInventoryItem({ params }) {
   const { id } = params;
 
   //look up the single item using id (in handle submit) fetch route
 
-  const {inventoryItem} = await getInventoryItemById(id);
+  const { inventoryItem } = await getInventoryItemById(id);
 
-  console.log('inventory item: ', inventoryItem)
+  console.log("inventory item: ", inventoryItem);
 
-
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Edit Item</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <UpdateInventoryForm inventoryItem={inventoryItem} />
-      </CardContent>
-    </Card>
-  );
-};
-
-
+  return <UpdateInventoryForm inventoryItem={inventoryItem} />;
+}

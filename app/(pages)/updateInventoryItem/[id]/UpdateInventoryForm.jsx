@@ -4,11 +4,18 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {useRouter} from "next/navigation"
+import { useRouter } from "next/navigation";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
 export default function UpdateInventoryForm({ inventoryItem }) {
-const router = useRouter()
-  const {_id: id, itemName, itemSerialNumber, note } = inventoryItem;
+  const router = useRouter();
+  const { _id: id, itemName, itemSerialNumber, note } = inventoryItem;
 
   const [newItemName, setNewItemName] = useState("");
   const [newItemSerialNumber, setNewItemSerialNumber] = useState("");
@@ -77,53 +84,59 @@ const router = useRouter()
       );
 
       if (res.ok) {
-        router.push('/')
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
     }
-
-
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Input
-        type="text"
-        placeholder={"Enter new item name"}
-        onFocus={(e) => (e.target.placeholder = "")}
-        onBlur={(e) => (e.target.placeholder = "Enter new item name")}
-        onChange={(e) => setNewItemName(e.target.value.trimStart())}
-        defaultValue=""
-      />
-      <Input
-        type="text"
-        placeholder={itemSerialNumber}
-        onFocus={(e) => (e.target.placeholder = "")}
-        onBlur={(e) => (e.target.placeholder = itemSerialNumber)}
-        onChange={(e) => setNewItemSerialNumber(e.target.value.trimStart())}
-        defaultValue=""
-      />
-      <Textarea
-        type="text"
-        placeholder={note}
-        onFocus={(e) => (e.target.placeholder = "")}
-        onBlur={(e) => (e.target.placeholder = note)}
-        onChange={(e) => setNewNote(e.target.value.trimStart())}
-        defaultValue=""
-      />
+    <Card>
+      <CardHeader>
+        <CardTitle>Edit Inventory Item</CardTitle>
+        <CardDescription>Update inventory item.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="form">
+          <Input
+            type="text"
+            placeholder={"Enter new item name"}
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Enter new item name")}
+            onChange={(e) => setNewItemName(e.target.value.trimStart())}
+            defaultValue=""
+          />
+          <Input
+            type="text"
+            placeholder={itemSerialNumber}
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = itemSerialNumber)}
+            onChange={(e) => setNewItemSerialNumber(e.target.value.trimStart())}
+            defaultValue=""
+          />
+          <Textarea
+            type="text"
+            placeholder={note}
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = note)}
+            onChange={(e) => setNewNote(e.target.value.trimStart())}
+            defaultValue=""
+          />
 
-      <button
-        type="submit"
-        className={`${
-          !error && isFormDirty
-            ? "cursor-pointer button button--primary w-full"
-            : "button button--disabled w-full cursor-not-allowed"
-        }`}
-        disabled={isFormDirty === null || isFormDirty === false}
-      >
-        Update Item
-      </button>
-    </form>
+          <button
+            type="submit"
+            className={`${
+              !error && isFormDirty
+                ? "cursor-pointer button button--primary w-full"
+                : "button button--disabled w-full cursor-not-allowed"
+            }`}
+            disabled={isFormDirty === null || isFormDirty === false}
+          >
+            Update Item
+          </button>
+        </form>
+      </CardContent>
+    </Card>
   );
 }
