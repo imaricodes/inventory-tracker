@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -15,6 +15,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 export default function AddInventoryItem() {
+  const maxCharacters = 200;
+  const [textArea, setTextArea] = useState("");
+  const [remainingChars, setRemainingChars] = useState(maxCharacters);
+
   const [itemName, setItemName] = useState("");
   const [itemSerialNumber, setItemSerialNumber] = useState("");
   const [note, setNote] = useState("");
@@ -31,6 +35,13 @@ export default function AddInventoryItem() {
     setTimeout(() => {
       router.push("/");
     }, 500);
+  };
+
+  const handleTextAreaChange = (e) => {
+    const inputText = event.target.value;
+    setTextArea(inputText);
+    setRemainingChars(maxCharacters - inputText.length);
+    setNote(e.target.value.trimStart());
   };
 
   const handleNameChange = (e) => {
@@ -78,51 +89,52 @@ export default function AddInventoryItem() {
   };
 
   return (
-      <Card className="max-w-[600px] mx-auto">
-        <CardHeader>
-          <CardTitle>Add Inventory Item</CardTitle>
-          <CardDescription>Add a new item to the inventory</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="form">
-            <Input
-              onChange={handleNameChange}
-              value={itemName}
-              // className="form__input"
-              type="text"
-              placeholder="Name"
-              required={true}
-            />
+    <Card className="max-w-[600px] mx-auto">
+      <CardHeader>
+        <CardTitle>Add Inventory Item</CardTitle>
+        <CardDescription>Add a new item to the inventory</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="form">
+          <Input
+            onChange={handleNameChange}
+            value={itemName}
+            // className="form__input"
+            type="text"
+            placeholder="Name"
+            required={true}
+          />
 
-            <Input
-              onChange={(e) => setItemSerialNumber(e.target.value.trim())}
-              value={itemSerialNumber}
-              type="text"
-              placeholder="Serial Number"
-            />
+          <Input
+            onChange={(e) => setItemSerialNumber(e.target.value.trim())}
+            value={itemSerialNumber}
+            type="text"
+            placeholder="Serial Number"
+          />
 
-            <Textarea
-              onChange={(e) => setNote(e.target.value)}
-              value={note}
-              className="focus-visible:ring-0 focus-visible:ring-offset-0"
-              placeholder="Note"
-              maxlength="150"
-            />
+          <Textarea
+            // onChange={(e) => setNote(e.target.value)}
+            onChange={handleTextAreaChange}
+            value={note}
+            className="focus-visible:ring-0 focus-visible:ring-offset-0"
+            placeholder="Note"
+            maxlength="200"
+          />
+          <p className="text-slate-400 text-sm">{remainingChars} characters remaining</p>
 
-            <button
-              type="submit"
-              className={`${
-                isFormValid && !error
-                  ? "cursor-pointer button button--primary"
-                  : "button button--disabled cursor-not-allowed"
-              }`}
-              disabled={!isFormValid}
-            >
-              Add Item
-            </button>
-          </form>
-        </CardContent>
-      </Card>
-
+          <button
+            type="submit"
+            className={`${
+              isFormValid && !error
+                ? "cursor-pointer button button--primary"
+                : "button button--disabled cursor-not-allowed"
+            }`}
+            disabled={!isFormValid}
+          >
+            Add Item
+          </button>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

@@ -16,7 +16,9 @@ import {
 export default function UpdateInventoryForm({ inventoryItem }) {
   const router = useRouter();
   const { _id: id, itemName, itemSerialNumber, note } = inventoryItem;
-
+  const maxCharacters = 200;
+  const [textArea, setTextArea] = useState('');
+  const [remainingChars, setRemainingChars] = useState(maxCharacters);
   const [newItemName, setNewItemName] = useState("");
   const [newItemSerialNumber, setNewItemSerialNumber] = useState("");
   const [newNote, setNewNote] = useState("");
@@ -26,13 +28,6 @@ export default function UpdateInventoryForm({ inventoryItem }) {
 
   // determine if form is dirty
   useEffect(() => {
-    console.log("new item name: ", newItemName);
-    console.log("new item serial: ", newItemSerialNumber);
-    console.log("new note: ", newNote);
-    console.log("new item name length: ", newItemName.length);
-    console.log("new item serial length: ", newItemSerialNumber.length);
-    console.log("new note length: ", newNote.length);
-
     if (
       newItemName.trim() === "" &&
       newItemSerialNumber.trim() === "" &&
@@ -47,13 +42,15 @@ export default function UpdateInventoryForm({ inventoryItem }) {
     }
   }, [newItemName, newItemSerialNumber, newNote]);
 
+  const handleTextAreaChange = (e) => {
+    setNewItemSerialNumber(e.target.value.trimStart())
+    const inputText = event.target.value;
+    setTextArea(inputText);
+    setRemainingChars(maxCharacters - inputText.length);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("handle submit");
-    console.log("new item name: ", newItemName);
-    console.log("new item serial: ", newItemSerialNumber);
-    console.log("new note: ", newNote);
 
     // assign altered fields to updatedFields object
     const updatedFields = {};
@@ -120,9 +117,11 @@ export default function UpdateInventoryForm({ inventoryItem }) {
             placeholder={note}
             onFocus={(e) => (e.target.placeholder = "")}
             onBlur={(e) => (e.target.placeholder = note)}
-            onChange={(e) => setNewNote(e.target.value.trimStart())}
+            onChange={handleTextAreaChange}
             defaultValue=""
+            maxlength={maxCharacters}
           />
+          <p className="text-slate-400 text-sm">{remainingChars} characters remaining</p>
 
           <button
             type="submit"
