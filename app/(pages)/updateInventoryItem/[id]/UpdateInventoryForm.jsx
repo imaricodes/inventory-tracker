@@ -135,6 +135,12 @@ export default function UpdateInventoryForm({ inventoryItem }) {
             Update Item
           </button>
         </form>
+        <button
+        className="cursor-pointer button button--destructive w-full"
+        onClick={() => router.push("/")}
+      >
+        Cancel
+      </button>
       </CardContent>
     </Card>
   );

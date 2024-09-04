@@ -76,6 +76,9 @@
 .button--primary {
   @apply bg-green-600;
 }
+.button--destructive {
+  @apply bg-red-600;
+}
 
 .button--disabled {
     @apply bg-gray-500
