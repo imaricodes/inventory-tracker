@@ -134,6 +134,12 @@ export default function AddInventoryItem() {
             Add Item
           </button>
         </form>
+        <button
+        className="cursor-pointer button button--destructive w-full"
+        onClick={() => router.push("/")}
+      >
+        Cancel
+      </button>
       </CardContent>
     </Card>
   );
