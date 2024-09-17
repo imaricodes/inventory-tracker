@@ -96,6 +96,7 @@ export default function UpdateInventoryForm({ inventoryItem }) {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="form">
+        <p>Item Name</p>
           <Input
             type="text"
             placeholder={itemName}
@@ -104,6 +105,7 @@ export default function UpdateInventoryForm({ inventoryItem }) {
             onChange={(e) => setNewItemName(e.target.value.trimStart())}
             defaultValue=""
           />
+          <p>Item Serial Number (optional)</p>
           <Input
             type="text"
             placeholder={itemSerialNumber}
@@ -112,6 +114,7 @@ export default function UpdateInventoryForm({ inventoryItem }) {
             onChange={(e) => setNewItemSerialNumber(e.target.value.trimStart())}
             defaultValue=""
           />
+          <p>Notes</p>
           <Textarea
             type="text"
             placeholder={note}
